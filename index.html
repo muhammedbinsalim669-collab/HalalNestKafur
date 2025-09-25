@@ -64,52 +64,39 @@
 </head>
 <body class="bg-light dark:bg-dark text-gray-800 dark:text-gray-200 min-h-screen">
     <!-- Navigation -->
-    <nav class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <img src="/assets/logo.svg" alt="HalalNest Logo" class="h-10">
-                <span class="text-xl font-bold text-primary">HalalNest</span>
-            </div>
-            
-            <div class="hidden md:flex space-x-6">
-                <a href="#dashboard" class="hover:text-primary transition">Dashboard</a>
-                <a href="#zakat" class="hover:text-primary transition">Zakat</a>
-                <a href="#faraid" class="hover:text-primary transition">Faraid</a>
-                <a href="#nisab" class="hover:text-primary transition">Nisab</a>
-                <a href="#giving" class="hover:text-primary transition">Giving</a>
-                <a href="#concepts" class="hover:text-primary transition">Islamic Concepts</a>
-            </div>
-            
-            <div class="flex items-center space-x-4">
-                <button id="language-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
-                    <span class="font-arabic">العربية</span>
-                </button>
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
-                    <i data-feather="moon" class="hidden dark:block"></i>
-                    <i data-feather="sun" class="dark:hidden"></i>
-                </button>
-                <!-- auth button remains but our script will render Google button or use fallback -->
-                <button id="auth-button" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
-                    Sign In
-                </button>
-                <button id="mobile-menu-button" class="md:hidden p-2">
-                    <i data-feather="menu"></i>
-                </button>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-lg">
-            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
-                <a href="#dashboard" class="py-2 hover:text-primary transition">Dashboard</a>
-                <a href="#zakat" class="py-2 hover:text-primary transition">Zakat</a>
-                <a href="#faraid" class="py-2 hover:text-primary transition">Faraid</a>
-                <a href="#nisab" class="py-2 hover:text-primary transition">Nisab</a>
-                <a href="#giving" class="py-2 hover:text-primary transition">Giving</a>
-                <a href="#concepts" class="py-2 hover:text-primary transition">Islamic Concepts</a>
-            </div>
-        </div>
-    </nav>
+    <nav class="navbar bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
+	<div class="container mx-auto px-4 py-3 flex justify-between items-center">
+		<div class="flex items-center space-x-2">
+			<img src="/assets/logo.svg" alt="HalalNest Logo" class="h-10">
+			<span class="text-xl font-bold text-primary">HalalNest</span>
+		</div>
+		
+		<div class="hidden md:flex space-x-6">
+			<a href="dashboard.html" class="hover:text-primary transition">Dashboard</a>
+			<a href="zakat.html" class="hover:text-primary transition">Zakat</a>
+			<a href="faraid.html" class="hover:text-primary transition">Faraid</a>
+			<a href="nisab.html" class="hover:text-primary transition">Nisab</a>
+			<a href="giving.html" class="hover:text-primary transition">Giving</a>
+			<a href="concepts.html" class="hover:text-primary transition">Islamic Concepts</a>
+		</div>
+		
+		<div class="flex items-center space-x-4">
+			<button id="language-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+				<span class="font-arabic">العربية</span>
+			</button>
+			<button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+				<i data-feather="moon" class="hidden dark:block"></i>
+				<i data-feather="sun" class="dark:hidden"></i>
+			</button>
+			<button id="auth-button" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
+				Sign In
+			</button>
+			<button id="mobile-menu-button" class="md:hidden p-2">
+				<i data-feather="menu"></i>
+			</button>
+		</div>
+	</div>
+</nav>
 
     <!-- Hero Section -->
     <section class="bg-gradient-to-r from-primary to-secondary text-white py-20">
@@ -551,6 +538,19 @@
                     alert('Google Sign-In would appear here in the production app');
                 });
             }
+        }
+
+        // Initialize after load
+        window.addEventListener('load', () => {
+            initGoogleSignIn();
+        });
+    </script>
+    <!-- Add animation libraries and main script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js" defer></script>
+    <script src="/assets/main.js" defer></script>
+</body>
+</html>
         }
 
         // Initialize after load

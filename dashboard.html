@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard | HalalNest</title>
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body class="bg-light dark:bg-dark text-gray-800 dark:text-gray-200 min-h-screen">
+  <!-- Navbar -->
+  <nav class="navbar bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <img src="/assets/logo.svg" alt="HalalNest Logo" class="h-10">
+        <span class="text-xl font-bold text-primary">HalalNest</span>
+      </div>
+
+      <div class="hidden md:flex space-x-6">
+        <a href="index.html" class="hover:text-primary transition">Home</a>
+        <a href="dashboard.html" class="text-primary font-medium">Dashboard</a>
+        <a href="zakat.html" class="hover:text-primary transition">Zakat</a>
+        <a href="faraid.html" class="hover:text-primary transition">Faraid</a>
+        <a href="nisab.html" class="hover:text-primary transition">Nisab</a>
+        <a href="giving.html" class="hover:text-primary transition">Giving</a>
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <button id="language-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"><span class="font-arabic">العربية</span></button>
+        <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"><i data-feather="moon" class="hidden dark:block"></i><i data-feather="sun" class="dark:hidden"></i></button>
+        <button id="auth-button" class="btn btn--primary">Sign In</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div id="hero-particles"></div>
+    <div class="hero-inner container mx-auto text-center fade-in-up">
+      <h1 class="h1">Welcome to HalalNest Dashboard</h1>
+      <p class="lead max-w-2xl mx-auto mt-4">Central hub for Zakat, Faraid and Nisab tools — quick access to calculators, trackers and resources.</p>
+      <div class="mt-8 flex items-center justify-center gap-4">
+        <a href="zakat.html" class="btn btn--primary">Calculate Zakat</a>
+        <a href="faraid.html" class="btn btn--ghost">Faraid Calculator</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Tools -->
+  <main class="container mx-auto px-4 py-12">
+    <section class="cards-grid fade-up">
+      <article class="card card--compact">
+        <h3 class="h2">Zakat Calculator</h3>
+        <p class="muted mt-2">Compute your Zakat obligations using live Nisab values.</p>
+        <div class="mt-4"><a href="zakat.html" class="btn btn--primary">Open</a></div>
+      </article>
+
+      <article class="card card--compact">
+        <h3 class="h2">Faraid Inheritance</h3>
+        <p class="muted mt-2">Guided inheritance distribution with downloadable results.</p>
+        <div class="mt-4"><a href="faraid.html" class="btn btn--primary">Open</a></div>
+      </article>
+
+      <article class="card card--compact">
+        <h3 class="h2">Nisab Tracker</h3>
+        <p class="muted mt-2">Live thresholds for gold and silver with timestamps.</p>
+        <div class="mt-4"><a href="nisab.html" class="btn btn--primary">Open</a></div>
+      </article>
+    </section>
+
+    <section class="mt-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card">
+          <h3 class="h2">Prayer Times</h3>
+          <p class="muted">Quick view for today's timetable and next prayer.</p>
+          <div class="mt-4 bg-white dark:bg-gray-800 rounded-lg p-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm muted">Next Prayer</p>
+                <p id="next-prayer-name" class="font-bold">Asr</p>
+              </div>
+              <div class="text-right">
+                <p class="text-sm muted">Time Left</p>
+                <p id="prayer-countdown" class="font-bold">01:23:45</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="h2">Resources</h3>
+          <p class="muted">Access methodology, FAQ and educational videos.</p>
+          <ul class="mt-4 space-y-2">
+            <li><a href="concepts.html" class="text-primary hover:underline">Islamic Concepts</a></li>
+            <li><a href="#methodology" class="text-primary hover:underline">Methodology</a></li>
+            <li><a href="#faq" class="text-primary hover:underline">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <strong>HalalNest</strong> — your Islamic wealth tools.
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="#" aria-label="facebook"><i data-feather="facebook"></i></a>
+          <a href="#" aria-label="twitter"><i data-feather="twitter"></i></a>
+          <a href="#" aria-label="instagram"><i data-feather="instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js" defer></script>
+  <script src="/assets/main.js" defer></script>
+  <script>
+    AOS.init({ duration: 700, once: true });
+    feather.replace();
+    // init Google sign-in if you set HALALNEST_GSI_CLIENT in a small inline script or replace YOUR id in HTML pages
+    if (window.HALALNEST_GSI_CLIENT && window.initGSI) initGSI(window.HALALNEST_GSI_CLIENT, (r)=>console.log('gsi', r));
+  </script>
+</body>
+</html>

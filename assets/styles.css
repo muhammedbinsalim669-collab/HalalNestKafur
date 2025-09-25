@@ -112,3 +112,159 @@
 
 /* Accessibility high contrast */
 a:hover{ text-decoration:underline; outline-offset:3px }
+
+/* ========== Enhanced Design Tokens & Utilities (append) ========== */
+
+/* Palette refinement for better contrast and accessibility */
+:root{
+  --green-50: #E9F8EF;
+  --green-100: #CFF3D9;
+  --primary: #16A34A;       /* accent green */
+  --primary-600: #0F8C3A;
+  --teal: #22D3EE;
+  --bg-soft: #F7FBF8;
+  --text-dark: #071022;
+  --muted: #6B7280;
+  --glass-light: rgba(255,255,255,0.7);
+  --glass-dark: rgba(12,18,24,0.45);
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --container-max: 1280px;
+  --shadow-soft: 0 8px 30px rgba(2,6,23,0.08);
+  --shadow-strong: 0 20px 50px rgba(2,6,23,0.16);
+  --focus-ring: 3px rgba(34,197,94,0.18);
+}
+
+/* Typography scale and improved readability */
+html { font-size: 16px; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+body { line-height:1.58; color:var(--text-dark); background: linear-gradient(180deg, var(--bg-soft), #fff); }
+
+/* Container utility */
+.container { max-width: var(--container-max); margin-left:auto; margin-right:auto; padding-left:1rem; padding-right:1rem; }
+
+/* Headings */
+.h1{ font-size:clamp(1.8rem, 3.6vw, 3.2rem); font-weight:800; letter-spacing:-0.02em; line-height:1.02; color:var(--text-dark); }
+.h2{ font-size:clamp(1.2rem, 2.5vw, 1.6rem); font-weight:700; color:var(--text-dark); }
+.lead{ font-size:1.05rem; color:var(--muted); }
+
+/* NAVBAR */
+.navbar { background: rgba(255,255,255,0.75); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(16,24,40,0.04); }
+.dark .navbar { background: rgba(6,10,12,0.55); border-bottom: 1px solid rgba(255,255,255,0.04); }
+
+/* Hero refinements */
+.hero {
+  position: relative; overflow: hidden;
+  background: radial-gradient(1200px 400px at 10% 10%, rgba(34,211,238,0.08), transparent 10%),
+              linear-gradient(120deg, rgba(22,163,74,0.95), rgba(34,211,238,0.9));
+  color: white;
+}
+.hero .hero-inner{ padding:5rem 0; position:relative; z-index:2; }
+.hero .subtle { opacity:0.9; color:rgba(255,255,255,0.95); }
+
+/* Floating shapes improved */
+.floating-shape { transition: transform 0.6s ease; will-change: transform, opacity; opacity:.12; filter: blur(10px); }
+
+/* Card styles: glassmorphism + improved spacing */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.74));
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(10,20,15,0.04);
+  padding:1.2rem;
+}
+.dark .card {
+  background: linear-gradient(180deg, rgba(12,18,24,0.7), rgba(6,10,12,0.56));
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: var(--shadow-strong);
+}
+
+/* Compact card variant for list/grid items */
+.card--compact { padding:0.8rem; border-radius:var(--radius-md); }
+
+/* Buttons: primary and subtle outlines */
+.btn {
+  display:inline-flex; align-items:center; gap:0.6rem; cursor:pointer;
+  border-radius:10px; padding:0.6rem 0.9rem; font-weight:600; transition: transform .16s ease, box-shadow .18s ease, background .18s;
+}
+.btn--primary {
+  background: linear-gradient(90deg,var(--primary),var(--primary-600)); color:white; box-shadow: 0 10px 30px rgba(16,185,129,0.10);
+}
+.btn--primary:focus { outline: none; box-shadow: 0 10px 40px rgba(16,185,129,0.14), 0 0 0 var(--focus-ring); transform: translateY(-1px); }
+.btn--ghost { background: transparent; border:1px solid rgba(10,20,15,0.06); color:var(--text-dark); }
+
+/* Accessible focus for all interactive elements */
+:focus { outline: none; box-shadow: 0 0 0 var(--focus-ring); border-radius:8px; }
+
+/* Button microinteractions */
+.btn--primary:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 20px 50px rgba(16,185,129,0.12); }
+.btn--ghost:hover { transform:translateY(-2px); background: rgba(0,0,0,0.02); }
+
+/* Form controls */
+.input, input[type="number"], select, textarea {
+  border-radius:10px; padding:0.65rem 0.9rem; border:1px solid rgba(10,20,15,0.06);
+  background: rgba(255,255,255,0.9); transition:box-shadow .12s, transform .12s;
+}
+.dark .input, .dark input, .dark select, .dark textarea { background: rgba(0,0,0,0.36); border:1px solid rgba(255,255,255,0.06); color: #e6eef3; }
+.input:focus { box-shadow: 0 8px 30px rgba(2,6,23,0.06), 0 0 0 var(--focus-ring); transform: translateY(-1px); }
+
+/* Cards grid refinement */
+.cards-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:1rem; }
+@media (max-width:1000px){ .cards-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width:640px){ .cards-grid { grid-template-columns: 1fr; } }
+
+/* Soft gradients for accents and hover effects */
+.gradient-accent {
+  background: linear-gradient(90deg, rgba(34,211,238,0.12), rgba(22,163,74,0.12));
+  border-radius:10px;
+}
+
+/* Footer polish */
+.site-footer {
+  background: linear-gradient(180deg, rgba(34,211,238,0.02), rgba(22,163,74,0.02));
+  border-top: 1px solid rgba(10,20,15,0.04);
+  padding:2.4rem 0;
+}
+.site-footer a{ color:var(--muted); transition: color .12s; }
+.site-footer a:hover{ color:var(--primary); text-decoration:none; }
+
+/* Focus-visible improvements for keyboard users */
+:focus-visible { outline: none; box-shadow: 0 0 0 var(--focus-ring); border-radius:8px; }
+
+/* Smooth entrance animations */
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(12px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.fade-in-up { animation: fadeInUp .8s cubic-bezier(.2,.9,.3,1) both; }
+
+/* Floating subtle animation for decorative shapes */
+@keyframes floaty {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(6deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+.float-slow { animation: floaty 8s ease-in-out infinite; }
+
+/* Performance: responsive image helper and object-fit */
+.img-optimized { width:100%; height:auto; display:block; object-fit:cover; border-radius:10px; }
+
+/* Small utilities */
+.kicker { display:inline-block; padding:0.25rem 0.6rem; background: rgba(16,24,40,0.04); border-radius:999px; font-size:0.8rem; color:var(--muted); }
+.center { text-align:center; }
+
+/* Visually hidden (accessibility) */
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .float-slow, .floating-shape, .fade-in-up, .fade-up { animation: none !important; transition: none !important; }
+}
+
+/* Lightweight utility for glass modal */
+.modal {
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.86));
+  border-radius: 14px; padding:1.2rem; box-shadow:0 30px 60px rgba(2,6,23,0.12);
+}
+.dark .modal { background: linear-gradient(180deg, rgba(12,18,24,0.9), rgba(6,10,12,0.78)); }
+
+/* End of appended enhanced styles */
