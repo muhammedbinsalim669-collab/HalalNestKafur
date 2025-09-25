@@ -11,6 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body class="bg-light dark:bg-dark text-gray-800 dark:text-gray-200 min-h-screen">
     <!-- Navigation (same as index.html) -->
@@ -258,13 +260,14 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
         // Initialize AOS animation
         AOS.init();
-        
+
         // Initialize Feather Icons
         feather.replace();
-        
+
         // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
         const html = document.documentElement;
@@ -276,13 +279,30 @@
         });
         
         // Mock gold and silver prices (would be from API in production)
-        document.getElementById('gold-price').textContent = `$${(Math.random() * 5 + 60).toFixed(2)}`;
-        document.getElementById('silver-price').textContent = `$${(Math.random() * 0.2 + 0.7).toFixed(2)}`;
-        
+        const goldPriceEl = document.getElementById('gold-price');
+        const silverPriceEl = document.getElementById('silver-price');
+
+        const mockGold = (Math.random() * 5 + 60).toFixed(2);
+        const mockSilver = (Math.random() * 0.2 + 0.7).toFixed(2);
+
+        goldPriceEl.textContent = `$${mockGold}`;
+        silverPriceEl.textContent = `$${mockSilver}`;
+
         // Calculate Nisab based on gold price (87.48g)
-        const goldPrice = parseFloat(document.getElementById('gold-price').textContent.replace('$', ''));
+        const goldPrice = parseFloat(mockGold);
         const nisabValue = (87.48 * goldPrice).toFixed(2);
         document.getElementById('current-nisab').textContent = `$${nisabValue}`;
+
+        // Init Google sign-in if available (same init function as index)
+        if (window.google && google.accounts && google.accounts.id) {
+            google.accounts.id.initialize({
+                client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com',
+                callback: (r)=>{ console.log('zakath id token', r.credential); alert('Signed in (mock)'); }
+            });
+            google.accounts.id.renderButton(document.getElementById('auth-button'), { theme: 'outline', size: 'medium' });
+        } else {
+            document.getElementById('auth-button').addEventListener('click', ()=> alert('Sign in (mock)'));
+        }
     </script>
 </body>
 </html>

@@ -11,6 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body class="bg-light dark:bg-dark text-gray-800 dark:text-gray-200 min-h-screen">
     <!-- Navigation (same as index.html) -->
@@ -89,6 +91,92 @@
                 <!-- Silver Nisab -->
                 <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="100">
                     <div class="bg-secondary h-2"></div>
-                    <div class="p-6
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-secondary bg-opacity-10 p-3 rounded-lg">
+                                <i data-feather="award" class="text-secondary"></i>
+                            </div>
+                            <h2 class="text-xl font-semibold ml-4">Silver Nisab</h2>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="text-gray-500 dark:text-gray-400">Current silver price:</p>
+                            <p class="text-2xl font-bold" id="silver-price">$0.74/gram</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="text-gray-500 dark:text-gray-400">Nisab threshold (612.36g):</p>
+                            <p class="text-2xl font-bold" id="silver-nisab">$452.70</p>
+                        </div>
+
+                        <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                            <i data-feather="clock" class="mr-2 w-4 h-4"></i>
+                            <span>Updated: <span id="silver-update-time">Just now</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Important notes and footer (reuse existing footer) -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold mb-4">Important Notes</h3>
+                <ul class="list-disc list-inside mb-4">
+                    <li class="mb-2">Nisab values are calculated based on the <a href="https://www.metalsdaily.com/" class="text-primary hover:underline">latest market prices</a> of gold and silver.</li>
+                    <li class="mb-2">The values are updated every minute. Please check back regularly for the most current Nisab.</li>
+                    <li class="mb-2">For detailed information on how Nisab is calculated, please refer to our <a href="concepts.html#nisab-calculation" class="text-primary hover:underline">Nisab Calculation Guide</a>.</li>
+                </ul>
+            </div>
+
+            <div class="text-center text-sm text-gray-500 dark:text-gray-400">
+                &copy; 2023 HalalNest. All rights reserved.
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize AOS animation
+        AOS.init();
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Theme Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            themeToggleBtn.querySelector('i').classList.toggle('hidden');
+        });
+
+        // Mock update times and prices
+        const goldEl = document.getElementById('gold-price');
+        const goldNisabEl = document.getElementById('gold-nisab');
+        const goldUpdateEl = document.getElementById('gold-update-time');
+
+        const silverEl = document.getElementById('silver-price');
+        const silverNisabEl = document.getElementById('silver-nisab');
+        const silverUpdateEl = document.getElementById('silver-update-time');
+
+        const gPrice = (Math.random()*5 + 60).toFixed(2);
+        const sPrice = (Math.random()*0.2 + 0.7).toFixed(2);
+
+        if (goldEl) goldEl.textContent = `$${gPrice}/gram`;
+        if (goldNisabEl) goldNisabEl.textContent = `$${(87.48 * parseFloat(gPrice)).toFixed(2)}`;
+        if (goldUpdateEl) goldUpdateEl.textContent = 'Just now';
+
+        if (silverEl) silverEl.textContent = `$${sPrice}/gram`;
+        if (silverNisabEl) silverNisabEl.textContent = `$${(612.36 * parseFloat(sPrice)).toFixed(2)}`;
+        if (silverUpdateEl) silverUpdateEl.textContent = 'Just now';
+
+        // Google Sign-In init (fallback)
+        if (window.google && google.accounts && google.accounts.id) {
+            google.accounts.id.initialize({
+                client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com',
+                callback: (r)=>{ console.log('nisab id token', r.credential); alert('Signed in (mock)'); }
+            });
+            google.accounts.id.renderButton(document.getElementById('auth-button'), { theme: 'outline', size: 'medium' });
+        } else {
+            document.getElementById('auth-button').addEventListener('click', ()=> alert('Sign in (mock)'));
+        }
+    </script>
 </body>
 </html>

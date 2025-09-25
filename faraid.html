@@ -11,6 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body class="bg-light dark:bg-dark text-gray-800 dark:text-gray-200 min-h-screen">
     <!-- Navigation (same as index.html) -->
@@ -291,11 +293,22 @@
         });
         
         // Show results when Calculate button is clicked
-        document.querySelector('.bg-primary').addEventListener('click', function() {
+        document.querySelector('.btn-primary, .bg-primary').addEventListener('click', function() {
             document.getElementById('faraid-results').classList.remove('hidden');
             // Scroll to results
             document.getElementById('faraid-results').scrollIntoView({ behavior: 'smooth' });
         });
+
+        // Initialize Google Sign-In on this page
+        if (window.google && google.accounts && google.accounts.id) {
+            google.accounts.id.initialize({
+                client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com',
+                callback: (r)=>{ console.log('faraid id token', r.credential); alert('Signed in (mock)'); }
+            });
+            google.accounts.id.renderButton(document.getElementById('auth-button'), { theme: 'outline', size: 'medium' });
+        } else {
+            document.getElementById('auth-button').addEventListener('click', ()=> alert('Sign in (mock)'));
+        }
     </script>
 </body>
 </html>
